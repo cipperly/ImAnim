@@ -33,6 +33,8 @@ else
 }
 ```
 
+Note that if you want to fade out an object, then you would just go from an alpha of 1 to 0; to fade in, go from an alpha of 0 to 1.
+
 Example of animating the position of an ImGui window:
 
 ```cpp
