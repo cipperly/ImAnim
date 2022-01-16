@@ -32,3 +32,54 @@ else
     pColorAnim->update();
 }
 ```
+
+Example of animating the position of an ImGui window:
+
+```cpp
+static ImVec2 vWinPos(20, 100);
+static imanim::ImVec2Anim *pWinPosAnim = nullptr;
+
+if (pWinPosAnim == nullptr)
+{
+    // Create the animation and attach it to the ImVec2 used to position the window
+    pWinPosAnim = new imanim::ImVec2Anim(&vWinPos);
+    // Setup 3 key frames; move from left to right then back to start
+    pWinPosAnim->setStartValue(ImVec2(20, 100));
+    pWinPosAnim->setKeyValueAt(0.5, ImVec2(400, 100));
+    pWinPosAnim->setEndValue(ImVec2(20, 100));
+    // Set the duration for a single loop to 2.5 seconds
+    pWinPosAnim->setDuration(2.5);
+    // Set the loop count to -1, which loops forever
+    pWinPosAnim->setLoopCount(-1);
+    pWinPosAnim->start();
+}
+else
+{
+    // Update the animation
+    pWinPosAnim->update();
+}
+
+// Draw the window
+ImGui::SetNextWindowPos(vWinPos);
+ImGui::Begin("Test Window");
+ImGui::Text("Some text");
+ImGui::End();
+```
+
+Note that
+```cpp
+pWinPosAnim->setStartValue(ImVec2(20, 100));
+```
+is the same as this:
+```cpp
+pWinPosAnim->setKeyValueAt(0.0, ImVec2(20, 100));
+```
+
+and
+```cpp
+pWinPosAnim->setEndValue(ImVec2(20, 100));
+```
+is the same as
+```cpp
+pWinPosAnim->setKeyValueAt(1.0, ImVec2(20, 100));
+```
