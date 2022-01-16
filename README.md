@@ -51,6 +51,7 @@ if (pWinPosAnim == nullptr)
     pWinPosAnim->setDuration(2.5);
     // Set the loop count to -1, which loops forever
     pWinPosAnim->setLoopCount(-1);
+    pWinPosAnim->setEasingCurve(imanim::EasingCurve::Type::InOutQuad);
     pWinPosAnim->start();
 }
 else
