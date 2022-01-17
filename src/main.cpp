@@ -172,12 +172,19 @@ int main(int, char**)
             {
                 if (pColorAnim == nullptr)
                 {
+                    // Create the animation and attach it to the ImVec4 being
+                    // used to color the text (vTextColor)
                     pColorAnim = new imanim::ImVec4Anim(&vTextColor);
                 }
                 pColorAnim->setStartValue(vStartColor);
                 pColorAnim->setEndValue(vEndColor);
+                // The duration below is in seconds and is the duration for a
+                // single loop
                 pColorAnim->setDuration(fColorDurationInSecs);
+                // The loop count below defaults to 1 if not set; set to -1 to
+                // loop forever
                 pColorAnim->setLoopCount(nColorLoopCount);
+                // See https://easings.net/ for a list of the easing functions
                 pColorAnim->setEasingCurve(static_cast<
                     imanim::EasingCurve::Type>(nColorEasingFuncIndex));
                 pColorAnim->start();
@@ -186,10 +193,12 @@ int main(int, char**)
             if (ImGui::Button("Stop Color Animation") &&
                 (pColorAnim != nullptr))
             {
+                // Stop the animate...there is no way to pause it yet
                 pColorAnim->stop();
             }
             if (pColorAnim != nullptr)
             {
+                // The update must be called while the animation is running
                 pColorAnim->update();
             }
             ImGui::NewLine();
@@ -198,6 +207,11 @@ int main(int, char**)
             {
                 if (pWinPosAnim == nullptr)
                 {
+                    // Create the animation and attach it to the ImVec2 being
+                    // used for the window position (vWinPos).  Note that this
+                    // is just animating the ImVec2 object, so you can use a
+                    // similar approach for animating other ImGui ImVec2
+                    // attributes.
                     pWinPosAnim = new imanim::ImVec2Anim(&vWinPos);
                     const ImGuiViewport *pViewport = ImGui::GetMainViewport();
                     pWinPosAnim->setStartValue(ImVec2(
@@ -267,13 +281,15 @@ int main(int, char**)
 
             ImGui::SetNextWindowPos(vWinPos);
             ImGui::SetNextWindowSize(ImVec2(300, 200));
-            ImGui::Begin("Test WinPos Animation", nullptr, ImGuiWindowFlags_NoDecoration);
+            ImGui::Begin("Test WinPos Animation", nullptr,
+                ImGuiWindowFlags_NoDecoration);
             ImGui::Text("Position Animation");
             ImGui::End();
 
             ImGui::SetNextWindowPos(ImVec2(500, 30));
             ImGui::SetNextWindowSize(vWinSize);
-            ImGui::Begin("Test WinSize Animation", nullptr, ImGuiWindowFlags_NoDecoration);
+            ImGui::Begin("Test WinSize Animation", nullptr,
+                ImGuiWindowFlags_NoDecoration);
             ImGui::Text("Size Animation");
             ImGui::End();
         }
@@ -283,7 +299,8 @@ int main(int, char**)
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+        glClearColor(clear_color.x * clear_color.w, clear_color.y *
+            clear_color.w, clear_color.z * clear_color.w, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
