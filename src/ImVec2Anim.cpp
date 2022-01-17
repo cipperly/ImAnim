@@ -112,11 +112,6 @@ void imanim::ImVec2Anim::updateValueForProgress(double dProgress)
         (m_curEndKeyFrame.m_dStep - m_curStartKeyFrame.m_dStep);
     v.x *= static_cast<float>(dLocalProgress);
     v.y *= static_cast<float>(dLocalProgress);
-    ImVec2 vCurValue;
-    vCurValue.x = m_curStartKeyFrame.m_vValue.x + v.x;
-    vCurValue.y = m_curStartKeyFrame.m_vValue.y + v.y;
-
-    // Update the new value
-    m_pVec2->x = vCurValue.x;
-    m_pVec2->y = vCurValue.y;
+    m_pVec2->x = m_curStartKeyFrame.m_vValue.x + v.x;
+    m_pVec2->y = m_curStartKeyFrame.m_vValue.y + v.y;
 }

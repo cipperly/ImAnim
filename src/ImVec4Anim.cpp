@@ -116,15 +116,8 @@ void imanim::ImVec4Anim::updateValueForProgress(double dProgress)
     v.y *= static_cast<float>(dLocalProgress);
     v.z *= static_cast<float>(dLocalProgress);
     v.w *= static_cast<float>(dLocalProgress);
-    ImVec4 vCurValue;
-    vCurValue.x = m_curStartKeyFrame.m_vValue.x + v.x;
-    vCurValue.y = m_curStartKeyFrame.m_vValue.y + v.y;
-    vCurValue.z = m_curStartKeyFrame.m_vValue.z + v.z;
-    vCurValue.w = m_curStartKeyFrame.m_vValue.w + v.w;
-
-    // Update the new value
-    m_pVec4->x = vCurValue.x;
-    m_pVec4->y = vCurValue.y;
-    m_pVec4->z = vCurValue.z;
-    m_pVec4->w = vCurValue.w;
+    m_pVec4->x = m_curStartKeyFrame.m_vValue.x + v.x;
+    m_pVec4->y = m_curStartKeyFrame.m_vValue.y + v.y;
+    m_pVec4->z = m_curStartKeyFrame.m_vValue.z + v.z;
+    m_pVec4->w = m_curStartKeyFrame.m_vValue.w + v.w;
 }
