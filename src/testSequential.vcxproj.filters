@@ -14,29 +14,35 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="ImGui">
-      <UniqueIdentifier>{69218cf1-a18f-4374-8212-a1dbc3d0dcce}</UniqueIdentifier>
+      <UniqueIdentifier>{d51310ae-fe03-4e80-bdf6-df934052c634}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="testSequential.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Easing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EasingCurve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="ImVec2Anim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImVec4Anim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="SequentialAnimationGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImVec2Anim.cpp">
+    <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui.cpp">
@@ -60,30 +66,30 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SequentialAnimationGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Easing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EasingCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractAnimation.h">
+    <ClInclude Include="ImVec2Anim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImVec4Anim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="SequentialAnimationGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImVec2Anim.h">
+    <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
@@ -112,12 +118,6 @@
     </ClInclude>
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SequentialAnimationGroup.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

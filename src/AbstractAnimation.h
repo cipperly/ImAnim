@@ -42,7 +42,7 @@ public:
      * Retrieves the duration of this animation
      * @return this animation's duration in seconds
      */
-    [[nodiscard]] float getDuration() const
+    [[nodiscard]] virtual float getDuration() const
     { return m_fDurationInSecs; }
 
     /**
@@ -118,7 +118,7 @@ public:
     /**
      * Performs an update of this animation
      */
-    void update();
+    virtual void update();
 
 protected:
 
@@ -129,11 +129,31 @@ protected:
     virtual void onStartAnimation() {}
 
     /**
+     * Extending classes should override to provide extra handling at the stop
+     * of animation
+     */
+    virtual void onStopAnimation() {}
+
+    /**
      * @brief Extending classes should update their value being interpolated
      * based on the specified current progress
      * @param dProgress the current progress for this animation
      */
     virtual void updateValueForProgress(double dProgress) = 0;
+
+    /// the state of this animation
+    State m_eAnimationState{ State::Stopped };
+
+    /// the loop count for this animation, which is the numer of loops that this
+    /// animation should loop before stopping.  A value of 0 indicates that this
+    /// animation will not run at all; a value of -1 indicates that this
+    /// animation will loop forever.
+    int m_nLoopCount{ 1 };
+
+    /// the current loop of this animation; once the animation completes its
+    /// duration, this count will be incremented.  If the loop count is 1, this
+    /// will always be 0.
+    int m_nCurrentLoop{ 0 };
 
 private:
 
@@ -143,22 +163,8 @@ private:
     /// the duration for this animation in seconds
     float m_fDurationInSecs { 0.0F };
 
-    /// the loop count for this animation, which is the numer of loops that this
-    /// animation should loop before stopping.  A value of 0 indicates that this
-    /// animation will not run at all; a value of -1 indicates that this
-    /// animation will loop forever.
-    int m_nLoopCount { 1 };
-
-    /// the current loop of this animation; once the animation completes its
-    /// duration, this count will be incremented.  If the loop count is 1, this
-    /// will always be 0.
-    int m_nCurrentLoop { 0 };
-
     /// The time stamp upon starting animation
     std::chrono::steady_clock::time_point m_startTime;
-
-    /// the state of this animation
-    State m_eAnimationState { State::Stopped };
 };
 
 } // namespace imanim
