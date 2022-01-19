@@ -64,6 +64,7 @@ void imanim::AbstractAnimation::stop()
     {
         m_eAnimationState = State::Stopped;
         m_nCurrentLoop = 0;
+        onStopAnimation();
     }
 }
 
@@ -86,11 +87,12 @@ void imanim::AbstractAnimation::update()
         // Last animation update
         updateValueForProgress(m_easingCurve.calculateValueForProgress(1.0));
         m_nCurrentLoop++;
-        if ((m_nCurrentLoop >= m_nLoopCount) && (m_nLoopCount > 0))
+        if ((m_nCurrentLoop >= m_nLoopCount) && (m_nLoopCount >= 0))
         {
             // This animation is finished
             m_eAnimationState = State::Stopped;
             m_nCurrentLoop = 0;
+            onStopAnimation();
             return;
         }
         m_startTime = std::chrono::high_resolution_clock::now();
