@@ -94,33 +94,34 @@ You can create a group of animations that run in a sequence like so:
 auto *pColorAnimGroup =
     new imanim::SequentialAnimationGroup();
 
-imanim::ImVec4Anim *pColorAnim1 = new imanim::ImVec4Anim(
-    &vText1Color);
+auto *pColorAnim1 = new imanim::ImVec4Anim(&vText1Color);
 pColorAnim1->setStartValue(ImVec4(1, 1, 1, 1));
 pColorAnim1->setEndValue(ImVec4(1, 0, 0, 1));
 pColorAnim1->setDuration(1.5);
 pColorAnim1->setEasingCurve(
     imanim::EasingCurve::Type::Linear);
 
-imanim::ImVec4Anim *pColorAnim2 = new imanim::ImVec4Anim(
-    &vText2Color);
+auto *pColorAnim2 = new imanim::ImVec4Anim(&vText2Color);
 pColorAnim2->setStartValue(ImVec4(1, 0, 0, 1));
 pColorAnim2->setEndValue(ImVec4(0, 1, 0, 1));
 pColorAnim2->setDuration(1.5);
 pColorAnim2->setEasingCurve(
     imanim::EasingCurve::Type::Linear);
 
-imanim::ImVec4Anim *pColorAnim3 = new imanim::ImVec4Anim(
-    &vText3Color);
+// This will act as a pause (do nothing) for 2 seconds
+auto *pPause = new imanim::PauseAnimation(2.0);
+
+auto *pColorAnim3 = new imanim::ImVec4Anim(&vText3Color);
 pColorAnim3->setStartValue(ImVec4(0, 1, 0, 1));
 pColorAnim3->setEndValue(ImVec4(0, 0, 1, 1));
 pColorAnim3->setDuration(1.5);
 pColorAnim3->setEasingCurve(
     imanim::EasingCurve::Type::Linear);
 
-// Add the 3 animations to the sequential group
+// Add the 4 animations to the sequential group
 pColorAnimGroup->addAnimation(pColorAnim1);
 pColorAnimGroup->addAnimation(pColorAnim2);
+pColorAnimGroup->addAnimation(pPause);
 pColorAnimGroup->addAnimation(pColorAnim3);
 
 pColorAnimGroup->start();
