@@ -165,6 +165,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="ImVec2Anim.cpp" />
     <ClCompile Include="ImVec4Anim.cpp" />
+    <ClCompile Include="PauseAnimation.cpp" />
     <ClCompile Include="SequentialAnimationGroup.cpp" />
     <ClCompile Include="testSequential.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="ImVec2Anim.h" />
     <ClInclude Include="ImVec4Anim.h" />
+    <ClInclude Include="PauseAnimation.h" />
     <ClInclude Include="SequentialAnimationGroup.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

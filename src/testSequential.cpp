@@ -8,6 +8,7 @@
 #include "imgui_impl_opengl3.h"
 #include "ImVec2Anim.h"
 #include "ImVec4Anim.h"
+#include "PauseAnimation.h"
 #include "SequentialAnimationGroup.h"
 #include <stdio.h>
 #if defined(IMGUI_IMPL_OPENGL_ES2)
@@ -157,22 +158,19 @@ int main(int, char **)
                 {
                     // Create a group of animations to run in a sequence
                     pColorAnimGroup = new imanim::SequentialAnimationGroup();
-                    imanim::ImVec4Anim *pColorAnim1 = new imanim::ImVec4Anim(
-                        &vText1Color);
+                    auto *pColorAnim1 = new imanim::ImVec4Anim(&vText1Color);
                     pColorAnim1->setStartValue(ImVec4(1, 1, 1, 1));
                     pColorAnim1->setEndValue(ImVec4(1, 0, 0, 1));
                     pColorAnim1->setDuration(1.5);
                     pColorAnim1->setEasingCurve(
                         imanim::EasingCurve::Type::Linear);
-                    imanim::ImVec4Anim *pColorAnim2 = new imanim::ImVec4Anim(
-                        &vText2Color);
+                    auto *pColorAnim2 = new imanim::ImVec4Anim(&vText2Color);
                     pColorAnim2->setStartValue(ImVec4(1, 0, 0, 1));
                     pColorAnim2->setEndValue(ImVec4(0, 1, 0, 1));
                     pColorAnim2->setDuration(1.5);
                     pColorAnim2->setEasingCurve(
                         imanim::EasingCurve::Type::Linear);
-                    imanim::ImVec4Anim *pColorAnim3 = new imanim::ImVec4Anim(
-                        &vText3Color);
+                    auto *pColorAnim3 = new imanim::ImVec4Anim(&vText3Color);
                     pColorAnim3->setStartValue(ImVec4(0, 1, 0, 1));
                     pColorAnim3->setEndValue(ImVec4(0, 0, 1, 1));
                     pColorAnim3->setDuration(1.5);
@@ -229,16 +227,17 @@ int main(int, char **)
                 {
                     // Create the animation sequence
                     pWinPosAnimGroup = new imanim::SequentialAnimationGroup();
-                    imanim::ImVec2Anim *pWin1PosAnim = new imanim::ImVec2Anim(
-                        &vWin1Pos);
+                    auto *pWin1PosAnim = new imanim::ImVec2Anim(&vWin1Pos);
                     pWin1PosAnim->setStartValue(vStartWin1Pos);
                     pWin1PosAnim->setEndValue(ImVec2((vStartWin1Pos.x + 300),
                         vStartWin1Pos.y));
                     pWin1PosAnim->setEasingCurve(
                         imanim::EasingCurve::Type::InOutQuad);
                     pWin1PosAnim->setDuration(1.5);
-                    imanim::ImVec2Anim *pWin2PosAnim = new imanim::ImVec2Anim(
-                        &vWin2Pos);
+                    // Add a pause between the other two animations...this will
+                    // pause for two seconds
+                    auto *pPause = new imanim::PauseAnimation(2.0);
+                    auto *pWin2PosAnim = new imanim::ImVec2Anim(&vWin2Pos);
                     pWin2PosAnim->setStartValue(ImVec2(vStartWin1Pos.x + 400,
                         vStartWin1Pos.y));
                     pWin2PosAnim->setEndValue(ImVec2((vStartWin1Pos.x + 700),
@@ -247,6 +246,7 @@ int main(int, char **)
                         imanim::EasingCurve::Type::InOutQuad);
                     pWin2PosAnim->setDuration(1.5);
                     pWinPosAnimGroup->addAnimation(pWin1PosAnim);
+                    pWinPosAnimGroup->addAnimation(pPause);
                     pWinPosAnimGroup->addAnimation(pWin2PosAnim);
                 }
                 else if (pWinPosAnimGroup->getState() !=
