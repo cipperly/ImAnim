@@ -127,4 +127,4 @@ pColorAnimGroup->addAnimation(pColorAnim3);
 pColorAnimGroup->start();
 ```
 
-See testSequential.cpp for a complete example.
+See testSequential.cpp for a complete example.  See testParallel.cpp for an example on how to use the ParallelAnimationGroup which runs a group of animations in parallel.
