@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{714bcd57-9cc8-429d-94ab-dd75716abdb2}</ProjectGuid>
-    <RootNamespace>testSequential</RootNamespace>
+    <ProjectGuid>{7e382976-027d-45d4-8165-d00c574fc86e}</ProjectGuid>
+    <RootNamespace>testParallel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -168,7 +168,7 @@
     <ClCompile Include="ParallelAnimationGroup.cpp" />
     <ClCompile Include="PauseAnimation.cpp" />
     <ClCompile Include="SequentialAnimationGroup.cpp" />
-    <ClCompile Include="testSequential.cpp" />
+    <ClCompile Include="testParallel.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
